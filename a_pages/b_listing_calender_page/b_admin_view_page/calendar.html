@@ -345,6 +345,13 @@
       </div>
     </div>
 
+    <!-- Toggle Button for Admin Forms -->
+    <div style="margin-bottom: 20px; text-align: center;">
+      <button id="toggleFormsBtn" onclick="toggleForms()" style="padding: 12px 24px; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s;">⚙️ Management Tools</button>
+    </div>
+
+    <!-- Collapsible Admin Forms Container -->
+    <div id="formsContainer" style="display: none;">
     <!-- Set Nightly Rates for User View -->
     <div class="preference-panel">
       <h2>💰 Set Nightly Rates (User View)</h2>
@@ -450,6 +457,8 @@
         🔍 View Calendar & Performance
       </button>
     </div>
+    </div>
+    <!-- End of Collapsible Admin Forms Container -->
 
     <!-- Calendar Display -->
     <div class="calendar-container" id="calendarView">
@@ -500,6 +509,22 @@
     let currentMonth = new Date(2025, 11, 1); // December 2025
     let userPreferences = null;
     let userBookings = [];
+
+    // Toggle admin forms visibility
+    function toggleForms() {
+      const formsContainer = document.getElementById('formsContainer');
+      const toggleBtn = document.getElementById('toggleFormsBtn');
+      
+      if (formsContainer.style.display === 'none') {
+        formsContainer.style.display = 'block';
+        toggleBtn.textContent = '✕ Close Management Tools';
+        toggleBtn.style.backgroundColor = '#ef4444'; // Red when open
+      } else {
+        formsContainer.style.display = 'none';
+        toggleBtn.textContent = '⚙️ Management Tools';
+        toggleBtn.style.backgroundColor = '#8b5cf6'; // Purple when closed
+      }
+    }
 
     // Load properties on page load
     async function loadProperties() {

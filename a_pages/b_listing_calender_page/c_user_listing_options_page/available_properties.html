@@ -330,14 +330,17 @@
   <div class="container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
       <div>
-        <h1 style="margin-bottom: 5px;">🏘️ Available Properties - User View</h1>
-        <p class="subtitle" style="margin-bottom: 0;">Set your preferences and browse properties</p>
+        <h1 style="margin-bottom: 5px;">🏘️ Available Properties</h1>
+        <p class="subtitle" style="margin-bottom: 0;">Browse luxury properties and book your stay</p>
       </div>
       <div style="display: flex; gap: 10px;">
+        <button onclick="toggleForms()" id="toggleFormsBtn" style="padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">⚙️ Set Preferences</button>
         <button onclick="window.location.href='../../a_landing_page/index.html'" style="padding: 10px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer;">← Back to Home</button>
       </div>
     </div>
 
+    <!-- Collapsible Forms Container -->
+    <div id="formsContainer" style="display: none; margin-bottom: 20px;">
     <!-- Contact Information Form -->
     <div class="form-section">
       <h2>📧 Contact Information</h2>
@@ -437,6 +440,8 @@
         </div>
       </div>
     </div>
+    </div>
+    <!-- End of Collapsible Forms Container -->
 
     <div class="filters">
       <strong>Filter:</strong>
@@ -478,6 +483,22 @@
     let properties = [];
     let userData = null;
     let currentFilter = 'all';
+
+    // Toggle forms visibility
+    function toggleForms() {
+      const formsContainer = document.getElementById('formsContainer');
+      const toggleBtn = document.getElementById('toggleFormsBtn');
+      
+      if (formsContainer.style.display === 'none') {
+        formsContainer.style.display = 'block';
+        toggleBtn.textContent = '✕ Close Preferences';
+        toggleBtn.style.backgroundColor = '#ef4444'; // Red when open
+      } else {
+        formsContainer.style.display = 'none';
+        toggleBtn.textContent = '⚙️ Set Preferences';
+        toggleBtn.style.backgroundColor = '#8b5cf6'; // Purple when closed
+      }
+    }
 
     async function loadData() {
       try {
@@ -1003,6 +1024,21 @@
     
     function closeCalendarModal() {
       document.getElementById('calendarModal').classList.remove('active');
+    }
+
+    function toggleForms() {
+      const container = document.getElementById('formsContainer');
+      const btn = document.getElementById('toggleFormsBtn');
+      
+      if (container.style.display === 'none') {
+        container.style.display = 'block';
+        btn.textContent = '✕ Close Preferences';
+        btn.style.background = '#ef4444';
+      } else {
+        container.style.display = 'none';
+        btn.textContent = '⚙️ Set Preferences';
+        btn.style.background = '#8b5cf6';
+      }
     }
 
     // Load data on page load
