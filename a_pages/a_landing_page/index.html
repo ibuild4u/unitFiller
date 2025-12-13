@@ -1527,6 +1527,11 @@
     // Load preferences on page load
     loadUserPreferences();
     
+    // Check authentication
+    if (!sessionStorage.getItem('authenticated')) {
+      window.location.href = '../../auth.html';
+    }
+    
     // Export function to get user data (for use in other pages)
     window.getVividOasisUserData = function() {
       const saved = localStorage.getItem('vividOasisUserData');

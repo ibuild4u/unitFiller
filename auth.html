@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Required</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .auth-container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      color: #334155;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    p {
+      color: #64748b;
+      margin-bottom: 30px;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      transition: border 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    .error {
+      color: #ef4444;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .lock-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="lock-icon">🔐</div>
+    <h1>Private Access</h1>
+    <p>Enter password to view property portfolio</p>
+    
+    <input type="password" id="password" placeholder="Enter password" autofocus>
+    <div class="error" id="error">Incorrect password. Please try again.</div>
+    <button onclick="checkPassword()">Access Portfolio</button>
+  </div>
+
+  <script>
+    // Change this password to whatever you want
+    const CORRECT_PASSWORD = 'TRUSTWIFEY';
+    
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const error = document.getElementById('error');
+      
+      if (password === CORRECT_PASSWORD) {
+        // Store auth in sessionStorage (clears when browser closes)
+        sessionStorage.setItem('authenticated', 'true');
+        window.location.href = 'a_pages/a_landing_page/index.html';
+      } else {
+        error.style.display = 'block';
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+      }
+    }
+    
+    // Allow Enter key to submit
+    document.getElementById('password').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+  </script>
+</body>
+</html>
